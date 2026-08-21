@@ -1,4 +1,5 @@
 import asyncio
+import os
 import uuid
 from contextlib import asynccontextmanager
 
@@ -11,9 +12,15 @@ from fastapi import FastAPI
 # Redis / Memurai
 # ---------------------------------------------------------
 
-redis_client = redis.Redis(
-    host="localhost",
-    port=6379,
+# On Render, REDIS_URL comes from the environment variable.
+# Locally, it falls back to Memurai on localhost:6379.
+REDIS_URL = os.getenv(
+    "REDIS_URL",
+    "redis://localhost:6379"
+)
+
+redis_client = redis.from_url(
+    REDIS_URL,
     decode_responses=True
 )
 
@@ -63,7 +70,10 @@ async def print_worker():
 # Simulated printer vendor
 # ---------------------------------------------------------
 
-async def simulate_vendor(attendee_id: str, job_id: str):
+async def simulate_vendor(
+    attendee_id: str,
+    job_id: str
+):
 
     print(
         f"Vendor received print request: "
@@ -78,9 +88,12 @@ async def simulate_vendor(attendee_id: str, job_id: str):
         f"{attendee_id}, {job_id}"
     )
 
-    # Simulate vendor calling our webhook
+    # Simulate vendor calling our webhook.
+    # The vendor and webhook are running inside
+    # the same deployed application.
     webhook_url = (
-        "http://127.0.0.1:8000/print-confirmation"
+        "http://127.0.0.1:8000/"
+        "print-confirmation"
     )
 
     payload = {
@@ -116,6 +129,11 @@ async def lifespan(app: FastAPI):
     yield
 
     worker_task.cancel()
+
+    try:
+        await worker_task
+    except asyncio.CancelledError:
+        pass
 
 
 # ---------------------------------------------------------
