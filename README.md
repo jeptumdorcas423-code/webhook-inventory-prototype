@@ -1,24 +1,38 @@
-\# Meridian Pivot — Asynchronous Event Check-In Service
+## Live Deployment
 
 
 
-\## Solstice Events Co.
+- **Live Application:** https://meridian-pivot-dvwn.onrender.com
+
+- **API Documentation:** https://meridian-pivot-dvwn.onrender.com/docs
+
+- **OpenAPI Definition:** https://meridian-pivot-dvwn.onrender.com/openapi.json
+
+- **GitHub Repository:** https://github.com/jeptumdorcas423-code/webhook-inventory-prototype
 
 
 
-An asynchronous event check-in prototype developed for the \*\*Meridian Pivot Simulation\*\*.
+# Meridian Pivot — Asynchronous Event Check-In Service
 
 
 
-The project demonstrates how an event check-in kiosk can adapt from a synchronous badge-printing workflow to an asynchronous architecture using \*\*Redis/Memurai, a background worker, and an HTTP webhook\*\*.
+## Solstice Events Co.
 
 
 
-\---
+An asynchronous event check-in prototype developed for the **Meridian Pivot Simulation**.
 
 
 
-\# 1. Scenario
+The project demonstrates how an event check-in kiosk can adapt from a synchronous badge-printing workflow to an asynchronous architecture using **Redis/Memurai, a background worker, and an HTTP webhook**.
+
+
+
+---
+
+
+
+# 1. Scenario
 
 
 
@@ -46,11 +60,11 @@ The service therefore had to move to an asynchronous model without extending the
 
 
 
-\---
+---
 
 
 
-\# 2. Final Architecture
+# 2. Final Architecture
 
 
 
@@ -142,37 +156,37 @@ The service therefore had to move to an asynchronous model without extending the
 
 
 
-\---
+---
 
 
 
-\# 3. Key Technologies
+# 3. Key Technologies
 
 
 
-\* Python
+* Python
 
-\* FastAPI
+* FastAPI
 
-\* Uvicorn
+* Uvicorn
 
-\* Redis
+* Redis
 
-\* Memurai
+* Memurai
 
-\* HTTPX
+* HTTPX
 
-\* PowerShell
+* PowerShell
 
-\* Swagger/OpenAPI
-
-
-
-\---
+* Swagger/OpenAPI
 
 
 
-\# 4. Why Redis/Memurai?
+---
+
+
+
+# 4. Why Redis/Memurai?
 
 
 
@@ -196,15 +210,15 @@ meridian\_print\_queue
 
 
 
-\---
+---
 
 
 
-\# 5. API Endpoints
+# 5. API Endpoints
 
 
 
-\## `GET /`
+## `GET /`
 
 
 
@@ -228,11 +242,11 @@ Example response:
 
 
 
-\---
+---
 
 
 
-\## `POST /scan`
+## `POST /scan`
 
 
 
@@ -278,11 +292,11 @@ The attendee remains `pending` until successful print confirmation.
 
 
 
-\---
+---
 
 
 
-\## `POST /print-confirmation`
+## `POST /print-confirmation`
 
 
 
@@ -332,11 +346,11 @@ Successful response:
 
 
 
-\---
+---
 
 
 
-\# 6. Duplicate Protection
+# 6. Duplicate Protection
 
 
 
@@ -352,11 +366,11 @@ This prevents duplicate badge printing.
 
 
 
-\---
+---
 
 
 
-\# 7. Job ID Protection
+# 7. Job ID Protection
 
 
 
@@ -400,15 +414,15 @@ This protects the system against stale, incorrect, or out-of-order confirmations
 
 
 
-\---
+---
 
 
 
-\# 8. Installation
+# 8. Installation
 
 
 
-\## Requirements
+## Requirements
 
 
 
@@ -428,9 +442,9 @@ Verify the Memurai service with:
 
 Get-Service | Where-Object {
 
-&#x20;   $\_.Name -like "\*Memurai\*" -or
+&#x20;   $\_.Name -like "*Memurai*" -or
 
-&#x20;   $\_.DisplayName -like "\*Memurai\*"
+&#x20;   $\_.DisplayName -like "*Memurai*"
 
 }
 
@@ -452,11 +466,11 @@ Running  Memurai   Memurai
 
 
 
-\---
+---
 
 
 
-\# 9. Install Python Dependencies
+# 9. Install Python Dependencies
 
 
 
@@ -472,11 +486,11 @@ python -m pip install -r requirements.txt
 
 
 
-\---
+---
 
 
 
-\# 10. Start the Application
+# 10. Start the Application
 
 
 
@@ -506,11 +520,11 @@ Application startup complete.
 
 
 
-\---
+---
 
 
 
-\# 11. Open Swagger
+# 11. Open Swagger
 
 
 
@@ -530,11 +544,11 @@ Swagger provides an interactive interface for testing the API.
 
 
 
-\---
+---
 
 
 
-\# 12. End-to-End Test
+# 12. End-to-End Test
 
 
 
@@ -606,11 +620,11 @@ checked\_in
 
 
 
-\---
+---
 
 
 
-\# 13. Evidence From Final Testing
+# 13. Evidence From Final Testing
 
 
 
@@ -660,11 +674,11 @@ Final webhook response:
 
 
 
-\---
+---
 
 
 
-\# 14. Regression Tests
+# 14. Regression Tests
 
 
 
@@ -696,11 +710,11 @@ The following tests were completed after the pivot.
 
 
 
-\---
+---
 
 
 
-\# 15. Project Files
+# 15. Project Files
 
 
 
@@ -736,11 +750,11 @@ meridian-pivot/
 
 
 
-\---
+---
 
 
 
-\# 16. Pivot Documentation
+# 16. Pivot Documentation
 
 
 
@@ -748,11 +762,11 @@ Additional documentation is available in:
 
 
 
-\* `docs/learning-blocker-journal.md`
+* `docs/learning-blocker-journal.md`
 
-\* `docs/scope-delta-analysis.md`
+* `docs/scope-delta-analysis.md`
 
-\* `docs/test-evidence.md`
+* `docs/test-evidence.md`
 
 
 
@@ -760,11 +774,11 @@ These documents explain the learning process, troubleshooting, architectural cha
 
 
 
-\---
+---
 
 
 
-\# 17. Important Prototype Limitation
+# 17. Important Prototype Limitation
 
 
 
@@ -780,11 +794,11 @@ In a production deployment, the external badge-printer vendor would provide the 
 
 
 
-\---
+---
 
 
 
-\# 18. Final Outcome
+# 18. Final Outcome
 
 
 
@@ -829,6 +843,7 @@ Checked In
 
 
 The original business requirement of preventing duplicate badge printing remains intact after the architectural change.
+
 
 
 
